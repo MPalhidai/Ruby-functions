@@ -1,6 +1,4 @@
-
-
-def bubble_sort(array)
+def bubble_sort_by(array)
 =begin
 loop through each item
 check each item with the next item
@@ -11,16 +9,15 @@ loop through the array until no swapping has occurred
   sorted = false
   while !sorted
     sorted = true
-    for i in (1..array.length-1)
-      if array[i-1] > array[i]
-        array[i-1], array[i] = array[i], array[i-1]
+    array.each_cons(2) do |x,y|
+      if x <=> y
+        x, y = y, x
         sorted = false
       end
     end
   end
   return array
 end
-
 
 p bubble_sort([1,2,3,4,5]) == [1, 2, 3, 4, 5] ? "Test 1: Passed" : "Test 1: Failed"
 p bubble_sort([2,5,4,3,1]) == [1, 2, 3, 4, 5] ? "Test 2: Passed" : "Test 2: Failed"
