@@ -20,13 +20,14 @@ loop through the array until no swapping has occurred
 end
 
 def bubble_sort_by(array)
-  return_array = []
+  index = 0
   array.each_cons(2) do |elem|
-
+    puts "Run #{index}"
     case yield(elem)
     when 1
       p elem
       puts "Left is bigger"
+      array[index],array[index + 1] = array[index + 1], array[index]
     when 0
       p elem
       puts "They're the same"
@@ -34,8 +35,11 @@ def bubble_sort_by(array)
       p elem
       puts "Right is bigger"
     end
+
+    index += 1
   end
   #array
+  array
 end
 
 
