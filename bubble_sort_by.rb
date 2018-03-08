@@ -20,14 +20,26 @@ loop through the array until no swapping has occurred
 end
 
 def bubble_sort_by(array)
+  return_array = []
   array.each_cons(2) do |elem|
-    p  elem
+
+    case yield(elem)
+    when 1
+      p elem
+      puts "Left is bigger"
+    when 0
+      p elem
+      puts "They're the same"
+    when -1
+      p elem
+      puts "Right is bigger"
+    end
   end
-  array
+  #array
 end
 
 
-p bubble_sort_by([1,-5,3,-4,5]) {|left, right| left - right }
+p bubble_sort_by([1,1,-5,3,-4,5]) {|left, right| left <=> right }
 
 
 #p bubble_sort([1,-5,3,-4,5]) == [-5, -4, 1, 3, 5] ? "Test 4: Passed" : "Test 4: Failed"
