@@ -8,13 +8,13 @@ if the item is greater than the one to the right, swap the items
 loop through the array until no swapping has occured
 =end
 
-  sorted = 1
-  while sorted > 0
-    sorted = 0
-    array.each_index do |i|
-      if array[i+1] != nil && array[i] > array[i+1]
-        array[i], array[i+1] = array[i+1], array[i]
-        sorted+=1
+  sorted = false
+  while !sorted
+    sorted = true
+    for i in (1..array.length-1)
+      if array[i-1] > array[i]
+        array[i-1], array[i] = array[i], array[i-1]
+        sorted = false
       end
     end
   end
