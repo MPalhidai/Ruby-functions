@@ -11,10 +11,12 @@ module LinkedList
   class Queue
     def initialize
       @first = nil
+      @last = nil
     end
 
     def enqueue(value)
-      @first = Node.new(value, @first)
+      @first == nil ? @first = Node.new(value, @last) : @last = Node.new(value, @last)
+
     end
     alias_method :"<<", :enqueue
 
@@ -30,3 +32,5 @@ module LinkedList
     end
   end
 end
+
+#Use ruby stack = LinkedList::Queue.new

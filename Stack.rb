@@ -30,3 +30,5 @@ module LinkedList
     end
   end
 end
+
+#ruby stack = LinkedList::Stack.new
