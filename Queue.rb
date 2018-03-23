@@ -8,18 +8,18 @@ module LinkedList
     end
   end
 
-  class Stack
+  class Queue
     def initialize
       @first = nil
     end
 
-    def push(value)
+    def enqueue(value)
       @first = Node.new(value, @first)
     end
-    alias_method :"<<", :push
+    alias_method :"<<", :enqueue
 
-    def pop
-      raise "Stack is empty" if is_empty?
+    def dequeue
+      raise "Queue is empty" if is_empty?
       value = @first.value
       @first = @first.next_node
       value

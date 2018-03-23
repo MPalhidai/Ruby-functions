@@ -1,92 +1,48 @@
 class Node
+  attr_accessor :val, :next
 
-	attr_accessor :next
-	attr_reader :data
-	#your node code here
-	def initialize(data = nil, nextNode = nil)
-        @data = data
-        if nextNode != nil
-            @next = nextNode
-        end
-	end
-
+  def initialize(val, next_node)
+      @val = val
+      @next = next_node
+  end
 end
+
 
 class LinkedList
-	#setup head and tail
-  attr_reader :size
 
-  def initialize
-  	@head = nil
-  	@tail = @head
-  	@size = 0
+  def initialize(val)
+    @head = Node.new(val, nil)
   end
 
-  def add(index = nil,number)
-	#your code here
-    if index != nil
-        if index != 0
-          auxNode = get(index - 1)
-        else
-          auxNode = @head
-        end
-        auxNode.next = Node.new(number, auxNode.next)
-    elsif @head == nil
-		@head = Node.new(number)
-		@tail = @head
-	else
-		@tail.next = Node.new(number)
-		@tail = @tail.next
-	end
-	@size += 1
-	#puts @tail.data
-  end
-
-  def get(index)
-  	#your code here
-  	myNode = @head
-  	index.times do
-  		myNode = myNode.next
-  	end
-  	myNode
-  end
-
-  def remove(index)
-    if index != 0
-     puts get(index).data
-     auxNode = get(index - 1)
-     auxNode.next = auxNode.next.next
-    elsif index == @size
-    #tail
-     @tail = get(index - 1)
-     @tail.next = nil
-    else
-      puts @head.data
-      @head = get(1)
+  def add(val)
+    current = @head
+    while current.next != nil
+      current = current.next
     end
-      @size -= 1
+    current.next = Node.new(val, nil)
   end
 
-end
-
-
-def do_stuff(a, b)
-	if a == -9
-		@list.add(b)
-	elsif a == -6
-        puts @list.get(b).data
-    elsif a == -1
-        #remove
-        @list.remove(b)
+  def delete(val)
+    current.next = @head
+    if current.val = val
+      @head = current.next
     else
-        @list.add(a,b)
-	end
-end
+      while (current.next != nil) && (current.next.val != val)
+        current = current.next
+      end
+      unless current.next == nil
+        current.next = current.next.next
+      end
+    end
+  end
 
-#boilerplate code
-t = gets.to_i
-@list = LinkedList.new
-for i in 1..t do
-	a, b = gets.strip.split.map {|i| i.to_i}
-	do_stuff(a, b)
+  def return_list
+    elements = []
+    current = @head
+    while current.next != nil
+      elements << current
+      current = current.next
+    end
+    elements << current
+  end
 end
