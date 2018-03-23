@@ -16,7 +16,7 @@ module LinkedList
 
     def enqueue(value)
       @first == nil ? @first = Node.new(value, @last) : @last = Node.new(value, @last)
-
+      #not working
     end
     alias_method :"<<", :enqueue
 
